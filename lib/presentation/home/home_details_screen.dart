@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class HomeDetailsScreen extends StatelessWidget {
@@ -5,12 +7,10 @@ class HomeDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: Text(
         'Home Details',
-        style: TextStyle(
-            color: Colors.white
-        ),
+        style: TextStyle(color: Colors.white),
       ),
     );
   }

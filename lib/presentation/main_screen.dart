@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 import '../core/utils/constants.dart';
 
 class MainScreen extends StatelessWidget {
-
   final Widget screen;
 
   MainScreen({Key? key, required this.screen}) : super(key: key);
@@ -39,30 +38,30 @@ class MainScreen extends StatelessWidget {
   }
 }
 
-BlocBuilder<NavigationCubit, NavigationState> _buildBottomNavigation(mContext, List<NamedNavigationBarItemWidget>tabs) =>
-    BlocBuilder<NavigationCubit, NavigationState>(
-      buildWhen: (previous, current) => previous.index != current.index,
-      builder: (context, state) {
-        return BottomNavigationBar(
-          onTap: (value) {
-            if(state.index != value){
-              context.read<NavigationCubit>().getNavBarItem(value);
-              context.go(tabs[value].initialLocation);
-            }
-          },
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          elevation: 0,
-          backgroundColor: Colors.black,
-          unselectedItemColor: Colors.white,
-          selectedIconTheme: IconThemeData(
-            size: ((IconTheme
-                .of(mContext)
-                .size)! * 1.3),
-          ),
-          items: tabs,
-          currentIndex: state.index,
-          type: BottomNavigationBarType.fixed,
-        );
-      },
-    );
+BlocBuilder<NavigationCubit, NavigationState> _buildBottomNavigation(
+    mContext, List<NamedNavigationBarItemWidget> tabs) {
+  return BlocBuilder<NavigationCubit, NavigationState>(
+    buildWhen: (previous, current) => previous.index != current.index,
+    builder: (context, state) {
+      return BottomNavigationBar(
+        onTap: (value) {
+          if (state.index != value) {
+            context.read<NavigationCubit>().getNavBarItem(value);
+            context.go(tabs[value].initialLocation);
+          }
+        },
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        elevation: 0,
+        backgroundColor: Colors.black,
+        unselectedItemColor: Colors.white,
+        selectedIconTheme: IconThemeData(
+          size: ((IconTheme.of(mContext).size)! * 1.3),
+        ),
+        items: tabs,
+        currentIndex: state.index,
+        type: BottomNavigationBarType.fixed,
+      );
+    },
+  );
+}

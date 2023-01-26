@@ -15,13 +15,11 @@ import '../../core/utils/constants.dart';
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
-final RouteObserver<PageRoute> mainObserver = RouteObserver<PageRoute>();
-
 final goRouter = GoRouter(
   initialLocation: Routes.homeNamedPage,
   debugLogDiagnostics: true,
+  observers: [GoRouterObserver()],
   navigatorKey: _rootNavigatorKey,
-  observers: [mainObserver],
   routes: [
     ShellRoute(
       navigatorKey: _shellNavigatorKey,
@@ -34,37 +32,77 @@ final goRouter = GoRouter(
       routes: [
         GoRoute(
           path: Routes.homeNamedPage,
-          pageBuilder: (context, state) => const NoTransitionPage(
-            child: HomeScreen(),
-          ),
+          pageBuilder: (context, state) {
+            return NoTransitionPage(
+              key: state.pageKey,
+              name: state.name,
+              child: const HomeScreen(),
+            );
+          },
           routes: [
             GoRoute(
               path: Routes.homeDetailsNamedPage,
-              builder: (context, state) => const HomeDetailsScreen(),
+              pageBuilder: (context, state) {
+                return NoTransitionPage(
+                  key: state.pageKey,
+                  name: state.name,
+                  child: const HomeDetailsScreen(),
+                );
+              },
             ),
           ],
         ),
         GoRoute(
           path: Routes.profileNamedPage,
-          pageBuilder: (context, state) => NoTransitionPage(
-            child: ProfileScreen(
-              onLeaveScreen: () => print("OnLeaveScreen"),
-            ),
-          ),
+          pageBuilder: (context, state) {
+            return NoTransitionPage(
+              key: state.pageKey,
+              name: state.name,
+              child: const ProfileScreen(),
+            );
+          },
           routes: [
             GoRoute(
               path: Routes.profileDetailsNamedPage,
-              builder: (context, state) => const ProfileDetailsScreen(),
+              builder: (context, state) {
+                return const ProfileDetailsScreen();
+              },
             ),
           ],
         ),
         GoRoute(
           path: Routes.settingsNamedPage,
-          pageBuilder: (context, state) => NoTransitionPage(
-            child: SettingScreen(onLeaveScreen: () => print("OnLeaveScreen")),
-          ),
+          pageBuilder: (context, state) {
+            return NoTransitionPage(
+              key: state.pageKey,
+              name: state.name,
+              child: const SettingScreen(),
+            );
+          },
         ),
       ],
     ),
   ],
 );
+
+class GoRouterObserver extends NavigatorObserver {
+  @override
+  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    print('MyTest didPush: $route');
+  }
+
+  @override
+  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    print('MyTest didPop: $route');
+  }
+
+  @override
+  void didRemove(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    print('MyTest didRemove: $route');
+  }
+
+  @override
+  void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
+    print('MyTest didReplace: $newRoute');
+  }
+}
