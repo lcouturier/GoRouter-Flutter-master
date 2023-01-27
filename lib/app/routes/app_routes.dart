@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_print
 
-import 'package:androidrouting/app/routes/go_router_observer.dart';
 import 'package:androidrouting/controller/navigation_cubit.dart';
 import 'package:androidrouting/presentation/home/home_details_screen.dart';
 import 'package:androidrouting/presentation/home/home_screen.dart';
@@ -19,7 +18,7 @@ final _shellNavigatorKey = GlobalKey<NavigatorState>();
 final goRouter = GoRouter(
   initialLocation: Routes.homeNamedPage,
   debugLogDiagnostics: true,
-  observers: [GoRouterObserver()],
+  observers: [],
   navigatorKey: _rootNavigatorKey,
   routes: [
     ShellRoute(

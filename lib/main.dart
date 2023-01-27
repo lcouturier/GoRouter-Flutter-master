@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:lifecycle_aware_state/lifecycle_aware_state.dart';
 import 'app/routes/app_routes.dart';
 
 void main() {
+  LifecycleAwareState.logSuffixedClassesOnly = false;
   runApp(const MyApp());
 }
 

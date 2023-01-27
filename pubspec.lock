@@ -344,6 +344,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.3.1"
+  lifecycle_aware_state:
+    dependency: "direct main"
+    description:
+      name: lifecycle_aware_state
+      sha256: "77af8e11a6f00445ba2877824001d8e08edee020f6659d81cd13eb6514c82024"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.4"
   lints:
     dependency: transitive
     description:

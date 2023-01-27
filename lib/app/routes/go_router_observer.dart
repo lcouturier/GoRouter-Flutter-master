@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+final RouteObserver<PageRoute> myObserver = RouteObserver();
+
 class GoRouterObserver extends NavigatorObserver {
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
