@@ -29,18 +29,6 @@ class _HomeDetailsScreenState extends LifecycleAwareState<HomeDetailsScreen> {
     );
   }
 
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  //   myObserver.subscribe(this, ModalRoute.of(context) as PageRoute);
-  // }
-
-  // @override
-  // void dispose() {
-  //   myObserver.unsubscribe(this);
-  //   super.dispose();
-  // }
-
   @override
   void didPush() {
     super.didPush();
