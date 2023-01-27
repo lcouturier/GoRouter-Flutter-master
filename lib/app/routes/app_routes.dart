@@ -42,12 +42,15 @@ final goRouter = GoRouter(
           },
           routes: [
             GoRoute(
-              path: Routes.homeDetailsNamedPage,
+              name: "details",
+              path: "details/:name",
               pageBuilder: (context, state) {
                 return NoTransitionPage(
                   key: state.pageKey,
                   name: state.name,
-                  child: const HomeDetailsScreen(),
+                  child: HomeDetailsScreen(
+                    name: state.params["name"]!,
+                  ),
                 );
               },
             ),

@@ -1,5 +1,6 @@
 import 'package:androidrouting/controller/navigation_cubit.dart';
 import 'package:androidrouting/controller/navigation_state.dart';
+import 'package:androidrouting/controller/pages.dart';
 import 'package:androidrouting/presentation/shared/named_nav_bar_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,7 +47,7 @@ Widget _buildBottomNavigation(BuildContext context, List<NamedNavigationBarItemW
       return BottomNavigationBar(
         onTap: (value) {
           if (state.pageType.index != value) {
-            context.read<NavigationCubit>().getNavBarItem(state.pageType);
+            context.read<NavigationCubit>().getNavBarItem(Pages.values[value]);
             context.go(tabs[value].initialLocation);
           }
         },

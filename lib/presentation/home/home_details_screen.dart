@@ -3,13 +3,14 @@
 import 'package:flutter/material.dart';
 
 class HomeDetailsScreen extends StatelessWidget {
-  const HomeDetailsScreen({Key? key}) : super(key: key);
+  final String name;
+  const HomeDetailsScreen({Key? key, required this.name}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        'Home Details',
+        name,
         style: TextStyle(color: Colors.white),
       ),
     );

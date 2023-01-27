@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        context.push(Routes.homeDetailsNamedPage);
+        context.pushNamed(Routes.homeDetailsNamedPage, params: {"name": "codemagic"});
       },
       child: const SizedBox(
         height: 100,
