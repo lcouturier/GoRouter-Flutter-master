@@ -1,7 +1,7 @@
+import 'package:androidrouting/controller/pages.dart';
 import 'package:bloc/bloc.dart';
 
 import 'package:androidrouting/controller/navigation_state.dart';
-import 'package:androidrouting/controller/page_type.dart';
 
 import '../core/utils/constants.dart';
 
