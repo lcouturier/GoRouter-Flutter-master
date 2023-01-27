@@ -1,12 +1,12 @@
-part of 'navigation_cubit.dart';
+import 'package:androidrouting/controller/page_type.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class NavigationState extends Equatable {
+part 'navigation_state.freezed.dart';
 
-  final String bottomNavItems;
-  final int index;
-
-  const NavigationState({required this.bottomNavItems, required this.index});
-
-  @override
-  List<Object> get props => [bottomNavItems, index];
+@freezed
+class NavigationState with _$NavigationState {
+  const factory NavigationState({
+    required String bottomNavItems,
+    required Pages pageType,
+  }) = _NavigationState;
 }

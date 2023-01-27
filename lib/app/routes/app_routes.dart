@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:androidrouting/app/routes/go_router_observer.dart';
 import 'package:androidrouting/controller/navigation_cubit.dart';
 import 'package:androidrouting/presentation/home/home_details_screen.dart';
 import 'package:androidrouting/presentation/home/home_screen.dart';
@@ -84,25 +85,3 @@ final goRouter = GoRouter(
     ),
   ],
 );
-
-class GoRouterObserver extends NavigatorObserver {
-  @override
-  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    print('MyTest didPush: $route');
-  }
-
-  @override
-  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    print('MyTest didPop: $route');
-  }
-
-  @override
-  void didRemove(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    print('MyTest didRemove: $route');
-  }
-
-  @override
-  void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
-    print('MyTest didReplace: $newRoute');
-  }
-}

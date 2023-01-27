@@ -1,22 +1,18 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
+
+import 'package:androidrouting/controller/navigation_state.dart';
+import 'package:androidrouting/controller/page_type.dart';
+
 import '../core/utils/constants.dart';
-part 'navigation_state.dart';
 
 class NavigationCubit extends Cubit<NavigationState> {
-  NavigationCubit() : super(const NavigationState(bottomNavItems: Routes.homeNamedPage, index: 0));
+  NavigationCubit() : super(const NavigationState(bottomNavItems: Routes.homeNamedPage, pageType: Pages.home));
 
-  void getNavBarItem(int index) {
-    switch (index) {
-      case 0:
-        emit(const NavigationState(bottomNavItems: Routes.homeNamedPage,index:  0));
-        break;
-      case 1:
-        emit(const NavigationState(bottomNavItems: Routes.profileNamedPage,index:  1));
-        break;
-      case 2:
-        emit(const NavigationState(bottomNavItems: Routes.settingsNamedPage,index:  2));
-        break;
-    }
+  void getNavBarItem(Pages pages) {
+    final state = pages.when(
+        home: () => const NavigationState(bottomNavItems: Routes.homeNamedPage, pageType: Pages.home),
+        cards: () => const NavigationState(bottomNavItems: Routes.profileNamedPage, pageType: Pages.cards),
+        account: () => const NavigationState(bottomNavItems: Routes.settingsNamedPage, pageType: Pages.account));
+    emit(state);
   }
 }

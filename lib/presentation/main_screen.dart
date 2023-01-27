@@ -1,4 +1,5 @@
 import 'package:androidrouting/controller/navigation_cubit.dart';
+import 'package:androidrouting/controller/navigation_state.dart';
 import 'package:androidrouting/presentation/shared/named_nav_bar_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,15 +39,14 @@ class MainScreen extends StatelessWidget {
   }
 }
 
-BlocBuilder<NavigationCubit, NavigationState> _buildBottomNavigation(
-    mContext, List<NamedNavigationBarItemWidget> tabs) {
+Widget _buildBottomNavigation(BuildContext context, List<NamedNavigationBarItemWidget> tabs) {
   return BlocBuilder<NavigationCubit, NavigationState>(
-    buildWhen: (previous, current) => previous.index != current.index,
+    buildWhen: (previous, current) => previous.pageType != current.pageType,
     builder: (context, state) {
       return BottomNavigationBar(
         onTap: (value) {
-          if (state.index != value) {
-            context.read<NavigationCubit>().getNavBarItem(value);
+          if (state.pageType.index != value) {
+            context.read<NavigationCubit>().getNavBarItem(state.pageType);
             context.go(tabs[value].initialLocation);
           }
         },
@@ -56,10 +56,10 @@ BlocBuilder<NavigationCubit, NavigationState> _buildBottomNavigation(
         backgroundColor: Colors.black,
         unselectedItemColor: Colors.white,
         selectedIconTheme: IconThemeData(
-          size: ((IconTheme.of(mContext).size)! * 1.3),
+          size: ((IconTheme.of(context).size)! * 1.3),
         ),
         items: tabs,
-        currentIndex: state.index,
+        currentIndex: state.pageType.index,
         type: BottomNavigationBarType.fixed,
       );
     },
